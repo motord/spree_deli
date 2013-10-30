@@ -13,5 +13,10 @@ module Spree
 
     end
 
+    def index
+      today
+      render(:action=> 'today')
+    end
+
   end
 end
