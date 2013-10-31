@@ -1,0 +1,7 @@
+zh-CN:
+  hello: "Hello world"
+
+  spree:
+    checkout_steps:
+      names:
+        calling_plan: Calling Plan

@@ -1,5 +1,13 @@
 module Spree
   HomeController.class_eval do
+
+    def index
+      today
+      render(:action=> 'today')
+    end
+
+    private
+
     def trading_hours?( date )
       ("10:00"..."16:00").include?(date.strftime("%H:%M"))
     end
@@ -11,11 +19,6 @@ module Spree
       @trading_hours=trading_hours?(@now)
       @closed='抱歉，目前尚未到开餐时间。'
 
-    end
-
-    def index
-      today
-      render(:action=> 'today')
     end
 
   end
