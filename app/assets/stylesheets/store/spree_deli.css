@@ -87,12 +87,10 @@
 }
 #cartData strong{
     font-family:"FreightSans", sans-serif;
+    color:#fff;
 }
 #popoverButtons{
     padding:10px;
-}
-strong{
-    color:#fff;
 }
 .hudbtn{
     -webkit-border-radius:3px;
