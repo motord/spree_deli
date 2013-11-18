@@ -2,6 +2,7 @@ zh-CN:
   hello: "Hello world"
 
   spree:
+    trading_hours: "Trading hours"
     checkout_steps:
       names:
         calling_plan: Calling Plan

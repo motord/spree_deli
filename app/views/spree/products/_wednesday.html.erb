@@ -25,7 +25,9 @@
               </div>
               <%= link_to truncate(product.name, :length => 50), '#', :class => 'info item_name', :itemprop => "name", :title => product.name %>
               <span class="price selling item_price" itemprop="price"><%= display_price(product) %></span>
-              <a class="item_add" href="javascript:;"> Add to Cart </a>
+              <% if @trading_hours %>
+                  <a class="item_add" href="javascript:;"> Add to Cart </a>
+              <% end %>
             </li>
         <% end %>
         <% reset_cycle("classes") %>

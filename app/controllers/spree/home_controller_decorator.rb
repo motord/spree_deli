@@ -8,16 +8,30 @@ module Spree
 
     private
 
-    def trading_hours?( date )
-      ("10:00"..."16:00").include?(date.strftime("%H:%M"))
+    def trading_hours?( timestamp )
+      (Spree::Config[:open_hour]...Spree::Config[:close_hour]).include?(timestamp.strftime("%H:%M"))
     end
 
     def today
-      Time.zone='Beijing'
+      Time.zone=Spree::Config[:timezone]
       @now=Time.current.in_time_zone
-      @today = @now.strftime('%A').downcase
+      swap=check_swap(@now)
+      if swap.nil?
+        @today = @now.strftime('%A').downcase
+      else
+        @today=swap.swap
+      end
       @trading_hours=trading_hours?(@now)
-      @closed='抱歉，目前尚未到开餐时间。'
+      @closed="抱歉，目前尚未到开餐时间(#{Spree::Config[:open_hour]} - #{Spree::Config[:close_hour]})。"
+
+    end
+
+    def check_swap(timestamp)
+      Swap.where(original: (Time.now.midnight..(Time.now.midnight +  1.day))).take
+    end
+
+    def holiday
+
 
     end
 

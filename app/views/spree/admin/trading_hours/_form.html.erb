@@ -1,0 +1,35 @@
+<div data-hook="admin_trading_hours_form_fields">
+  <div class="row">
+
+    <div class="alpha four columns" data-hook="timezone">
+      <fieldset class="no-border-bottom">
+        <legend align="center"><%= Spree.t(:timezone) %></legend>
+
+        <div class="field">
+          <%= text_field_tag :timezone, Spree::Config[:timezone], :class => 'fullwidth' %>
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="beta four columns" data-hook="open_hour">
+      <fieldset class="no-border-bottom">
+        <legend align="center"><%= Spree.t(:open) %></legend>
+
+        <div class="field">
+          <%= text_field_tag :open_hour, Spree::Config[:open_hour], :class => 'fullwidth' %>
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="four columns omega" data-hook="close_hour">
+      <fieldset class="no-border-bottom">
+        <legend align="center"><%= Spree.t(:close) %></legend>
+        <div class="field">
+          <%= text_field_tag :close_hour, Spree::Config[:close_hour], :class => 'fullwidth' %>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

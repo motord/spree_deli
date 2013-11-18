@@ -1,0 +1,14 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:trading_hours) %>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/deli_sub_menu' %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @mail_method } %>
+
+<%= form_tag admin_trading_hours_path, :method => :put do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    <div class="form-buttons filter-actions actions" data-hook="buttons"><%= button Spree.t('actions.update'), 'icon-refresh' %></div>
+  </fieldset>
+<% end %>
