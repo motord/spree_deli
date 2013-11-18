@@ -15,19 +15,21 @@ module Spree
     def today
       Time.zone=Spree::Config[:timezone]
       @now=Time.current.in_time_zone
-      swap=check_swap(@now)
-      if swap.nil?
-        @today = @now.strftime('%A').downcase
-      else
-        @today=swap.swap
-      end
+      @swap=swap?(@now)
       @trading_hours=trading_hours?(@now)
-      @closed="抱歉，目前尚未到开餐时间(#{Spree::Config[:open_hour]} - #{Spree::Config[:close_hour]})。"
-
     end
 
-    def check_swap(timestamp)
-      Swap.where(original: (Time.now.midnight..(Time.now.midnight +  1.day))).take
+    def swap?(timestamp)
+      swap=Swap.where(original: (Time.now.midnight..(Time.now.midnight +  1.day))).take
+      if swap.nil?
+        @today = @now.strftime('%A').downcase
+        return false
+      else
+        @today=swap.swap
+        @notice=swap.notice
+        return true
+      end
+
     end
 
     def holiday

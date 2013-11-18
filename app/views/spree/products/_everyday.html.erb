@@ -1,17 +1,17 @@
 <div id='everyday'>
   <%
-     products=Spree::Product.everyday
+    @products=Spree::Product.everyday
   %>
 
-  <% if products.empty? %>
+  <% if @products.empty? %>
       <%= Spree.t(:no_products_found) %>
   <% elsif params.key?(:keywords) %>
       <h6 class="search-results-title"><%= Spree.t(:search_results, :keywords => h(params[:keywords])) %></h6>
   <% end %>
 
-  <% if products.any? %>
+  <% if @products.any? %>
       <ul id="products" class="inline product-listing" data-hook>
-        <% products.each do |product| %>
+        <% @products.each do |product| %>
             <li id="product_<%= product.id %>" class="simpleCart_shelfItem columns three <%= cycle("alpha", "secondary", "", "omega secondary", :name => "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
               <div class="item_pid">product_<%= product.id %></div>
               <div class="product-image">

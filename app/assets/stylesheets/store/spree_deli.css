@@ -183,3 +183,10 @@
 .right{float:right}
 .clear{clear:both}
 
+#monday .product-listing,
+#tuesday .product-listing,
+#wednesday .product-listing,
+#thursday .product-listing,
+#friday .product-listing{
+    border-bottom: 1px solid #d9d9db;
+}

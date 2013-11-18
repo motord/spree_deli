@@ -1,36 +1,8 @@
-<div id="sign">
-    <% if not @trading_hours %>
-        <p><%= @closed %></p>
-    <% end %>
-</div>
-<div id='weekday'>星期二套餐</div>
-<div id='today'>
-    <%
-       products=Spree::Product.tuesday
-    %>
+<div id='tuesday'>
+  <%
+    @products=Spree::Product.tuesday
+  %>
 
-    <% if products.empty? %>
-        <%= Spree.t(:no_products_found) %>
-    <% elsif params.key?(:keywords) %>
-        <h6 class="search-results-title"><%= Spree.t(:search_results, :keywords => h(params[:keywords])) %></h6>
-    <% end %>
+  <%= render :partial => 'spree/products/shelf' %>
 
-    <% if products.any? %>
-        <ul id="products" class="inline product-listing" data-hook>
-          <% products.each do |product| %>
-              <li id="product_<%= product.id %>" class="simpleCart_shelfItem columns three <%= cycle("alpha", "secondary", "", "omega secondary", :name => "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
-                <div class="item_pid">product_<%= product.id %></div>
-                <div class="product-image">
-                  <%= small_image(product, :itemprop => "image") %>
-                </div>
-                <%= link_to truncate(product.name, :length => 50), '#', :class => 'info item_name', :itemprop => "name", :title => product.name %>
-                <span class="price selling item_price" itemprop="price"><%= display_price(product) %></span>
-                <% if @trading_hours %>
-                    <a class="item_add" href="javascript:;"> Add to Cart </a>
-                <% end %>
-              </li>
-          <% end %>
-          <% reset_cycle("classes") %>
-        </ul>
-    <% end %>
 </div>

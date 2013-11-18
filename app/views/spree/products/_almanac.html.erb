@@ -1,0 +1,32 @@
+<% content_for :sunday do %>
+    <div id='sunday'></div>
+<% end %>
+<% content_for :monday do %>
+    <div id='monday'>星期一套餐</div>
+<% end %>
+<% content_for :tuesday do %>
+    <div id='tuesday'>星期二套餐</div>
+<% end %>
+<% content_for :wednesday do %>
+    <div id='wednesday'>星期三套餐</div>
+<% end %>
+<% content_for :thursday do %>
+    <div id='thursday'>星期四套餐</div>
+<% end %>
+<% content_for :friday do %>
+    <div id='friday'>星期五套餐</div>
+<% end %>
+<% content_for :saturday do %>
+    <div id='saturday'></div>
+<% end %>
+
+
+<div id="almanac">
+  <% if @swap %>
+      <p><%= @notice %></p>
+  <% end %>
+  <% if not @trading_hours %>
+      <p><%= "抱歉，目前尚未到开餐时间(#{Spree::Config[:open_hour]} - #{Spree::Config[:close_hour]})。" %></p>
+  <% end %>
+  <%= content_for :"#{@today}" %>
+</div>
