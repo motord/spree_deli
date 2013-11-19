@@ -1,0 +1,47 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:towers) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_tower_link">
+    <%= button_link_to Spree.t(:new_tower), new_admin_tower_url, {:remote => true, :icon => 'icon-plus', 'data-update' => 'new_tower', :id => 'new_tower_link'} %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/deli_sub_menu' %>
+
+<%= image_tag 'select2-spinner.gif', :plugin => 'spree', :style => 'display: none', :id => 'busy_indicator' %>
+
+<%# Placeholder for new tower form %>
+<div id="new_tower"></div>
+
+<% if @towers.any? %>
+<table class="index" id='listing_towers' data-hook>
+  <colgroup>
+    <col style="width: 90%">
+    <col style="width: 10%">
+  </colgroup>
+  <thead>
+    <tr data-hook="towers_header">
+      <th><%= Spree.t(:building) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @towers.each do |tower| %>
+      <tr id="<%= spree_dom_id tower %>" data-hook="towers_row" class="<%= cycle('odd', 'even')%>">
+        <td style="padding-left:1em"><%= tower.building %></td>
+        <td class="actions">
+          <%= link_to_edit(tower, :no_text => true, :class => 'admin_edit_tower') %>
+          <%= link_to_delete(tower, :no_text => true) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/tower')) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_tower_path %>!
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<div data-hook="admin_tower_form_fields" class="row">
+  <div class="alpha fourteen columns">
+    <%= f.field_container :building do %>
+        <%= f.label :building, Spree.t(:building) %> <span class="required">*</span><br />
+        <%= f.text_field :building, :class => 'fullwidth' %>
+        <%= f.error_message_on :building %>
+    <% end %>
+  </div>
+</div>
