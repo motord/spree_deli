@@ -1,0 +1,6 @@
+$("#new_swap").html('<%= escape_javascript(render :template => "spree/admin/swaps/new", :formats=>[:html], :handlers=>[:erb]) %>');
+handle_date_picker_fields();
+<% unless Rails.env.test? %>
+  $('.select2').select2();
+<% end %>
+$("#new_swap_link").parent().hide();

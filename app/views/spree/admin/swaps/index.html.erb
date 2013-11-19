@@ -1,0 +1,53 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:swaps) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_swap_link">
+    <%= button_link_to Spree.t(:new_swap), new_admin_swap_url, {:remote => true, :icon => 'icon-plus', 'data-update' => 'new_swap', :id => 'new_swap_link'} %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/deli_sub_menu' %>
+
+<%= image_tag 'select2-spinner.gif', :plugin => 'spree', :style => 'display: none', :id => 'busy_indicator' %>
+
+<%# Placeholder for new swap form %>
+<div id="new_swap"></div>
+
+<% if @swaps.any? %>
+<table class="index" id='listing_swaps' data-hook>
+  <colgroup>
+    <col style="width: 10%">
+    <col style="width: 10%">
+    <col style="width: 70%">
+    <col style="width: 10%">
+  </colgroup>
+  <thead>
+    <tr data-hook="swaps_header">
+      <th><%= Spree.t(:orginal) %></th>
+      <th><%= Spree.t(:swap) %></th>
+      <th><%= Spree.t(:notice) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @swaps.each do |swap| %>
+      <tr id="<%= spree_dom_id swap %>" data-hook="swaps_row" class="<%= cycle('odd', 'even')%>">
+        <td style="padding-left:1em"><%= swap.original %></td>
+        <td style="padding-left:1em"><%= swap.swap %></td>
+        <td style="padding-left:1em"><%= swap.notice %></td>
+        <td class="actions">
+          <%= link_to_edit(swap, :no_text => true, :class => 'admin_edit_swap') %>
+          <%= link_to_delete(swap, :no_text => true) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/swap')) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_swap_path %>!
+  </div>
+<% end %>
