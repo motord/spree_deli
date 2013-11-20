@@ -12,5 +12,5 @@
     <%= tab(:promotions, :url => spree.admin_promotions_path, :icon => 'icon-bullhorn') %>
 <% end %>
 <% if can? :admin, Spree::Swap %>
-    <%= tab(:shelves, :swaps, :towers, :trading_hours, :label => 'deli', :url => spree.edit_admin_shelves_path, :icon => 'icon-gear') %>
+    <%= tab(:shelves, :swaps, :towers, :trading_hours, :label => 'deli', :url => spree.edit_admin_shelf_path(:monday), :icon => 'icon-gear') %>
 <% end %>

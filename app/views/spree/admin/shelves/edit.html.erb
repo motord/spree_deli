@@ -1,0 +1,73 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:shelves) %>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/deli_sub_menu' %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @shelf } %>
+
+<%= render :partial => 'spree/admin/shelves/sub_menu' %>
+
+
+<table class="index shelf" id="listing_product_stock">
+  <colgroup>
+    <col style="width: 25%" />
+    <col style="width: 25%" />
+    <col style="width: 25%" />
+    <col style="width: 25%" />
+  </colgroup>
+  <thead>
+  <tr data-hook="admin_product_stock_management_index_headers">
+    <th><%= Spree.t(:variant) %></th>
+    <th colspan="4"><%= Spree.t(:stock_location_info) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @variants.each do |variant| %>
+      <% if variant.stock_items.present? %>
+          <tr id="<%= spree_dom_id variant %>" data-hook="admin_product_stock_management_index_rows" class="<%= cycle('odd', 'even') %>">
+            <td class="align-center">
+              <%= variant.name_and_sku %>
+              <br>
+              <% if variant.images.present? %>
+                  <%= image_tag variant.images.first.attachment.url(:mini) %>
+              <% end %>
+            </td>
+            <td colspan="4" class="stock_location_info">
+              <table>
+                <colgroup>
+                  <col style="width: 50%" />
+                  <col style="width: 25%" />
+                  <col style="width: 25%" />
+                </colgroup>
+                <thead>
+                <th><%= Spree.t(:stock_location) %></th>
+                <th><%= Spree.t(:count_on_hand) %></th>
+                <th><%= Spree.t(:backorderable) %></th>
+                </thead>
+                <tbody>
+                <% variant.stock_items.each do |item| %>
+                    <% next unless @stock_locations.include?(item.stock_location) %>
+
+                    <tr id="stock-item-<%= item.id %>" class="<%= cycle('odd', 'even', :name => 'stock_locations')%>">
+                      <td class="align-center"><%= item.stock_location.name %></td>
+                      <td class="align-center"><%= item.count_on_hand %></td>
+                      <td class="align-center">
+                        <%= form_tag admin_stock_item_path(item), method: :put, class: 'toggle_stock_item_backorderable' do %>
+                            <%= check_box_tag 'stock_item[backorderable]', true,
+                                              item.backorderable?,
+                                              class: 'stock_item_backorderable',
+                                              id: "stock_item_backorderable_#{item.stock_location.id}" %>
+                        <% end %>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </td>
+            <% reset_cycle("stock_locations") %>
+      <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

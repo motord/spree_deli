@@ -1,3 +1,6 @@
 /*
  *= require admin/spree_backend
 */
+table.shelf {
+    margin-top: 15px;
+}

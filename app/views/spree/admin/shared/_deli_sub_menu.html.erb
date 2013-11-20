@@ -1,6 +1,6 @@
 <% content_for :sub_menu do %>
     <ul id="sub_nav" data-hook="admin_deli_sub_tabs" class="inline-menu">
-      <%= tab :shelves, :match_path => '/shelves/edit', :url => spree.edit_admin_shelves_path %>
+      <%= tab :shelves, :match_path => '/shelves', :url => spree.edit_admin_shelf_path(:monday) %>
       <%= tab :swaps, :match_path => '/swaps' %>
       <%= tab :towers, :match_path => '/towers' %>
       <%= tab :trading_hours, :match_path => '/trading_hours/edit', :url => spree.edit_admin_trading_hours_path  %>

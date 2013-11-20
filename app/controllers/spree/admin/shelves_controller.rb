@@ -1,38 +1,26 @@
 module Spree
   module Admin
     class ShelvesController < Spree::Admin::BaseController
-      after_filter :initialize_mail_settings
 
       def update
         if params[:smtp_password].blank?
           params.delete(:smtp_password)
         end
 
-        params.each do |name, value|
-          next unless Spree::Config.has_preference? name
-          Spree::Config[name] = value
-        end
-
-        flash[:success] = Spree.t(:successfully_updated, :resource => Spree.t(:mail_methods))
         render :edit
       end
 
-      def testmail
-        if TestMailer.test_email(try_spree_current_user.id).deliver
-          flash[:success] = Spree.t('admin.mail_methods.testmail.delivery_success')
-        else
-          flash[:error] = Spree.t('admin.mail_methods.testmail.delivery_error')
+      def edit
+        method_name = "#{params[:id]}"
+        products=Spree::Product.send(method_name) if Spree::Product.respond_to? method_name
+        @variants=products.map {|p|p.master}
+        @stock_locations = StockLocation.accessible_by(current_ability, :read)
+        if @stock_locations.empty?
+          flash[:error] = Spree.t(:stock_management_requires_a_stock_location)
+          redirect_to admin_stock_locations_path
         end
-      rescue Exception => e
-        flash[:error] = Spree.t('admin.mail_methods.testmail.error') % {:e => e}
-      ensure
-        redirect_to edit_admin_mail_method_url
       end
 
-      private
-      def initialize_mail_settings
-        Spree::Core::MailSettings.init
-      end
     end
   end
 end

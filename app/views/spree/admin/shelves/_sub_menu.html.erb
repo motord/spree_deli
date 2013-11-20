@@ -1,0 +1,15 @@
+<nav id="sub-menu" data-hook>
+  <div class="container">
+    <div class="sixteen columns">
+      <ul id="sub_nav" data-hook="admin_deli_sub_tabs" class="inline-menu">
+        <%= tab :sunday, :match_path => '/shelves/sunday', :url => spree.edit_admin_shelf_path(:sunday)  %>
+        <%= tab :monday, :match_path => '/shelves/monday', :url => spree.edit_admin_shelf_path(:monday) %>
+        <%= tab :tuesday, :match_path => '/shelves/tuesday', :url => spree.edit_admin_shelf_path(:tuesday)  %>
+        <%= tab :wednesday, :match_path => '/shelves/wednesday', :url => spree.edit_admin_shelf_path(:wednesday)  %>
+        <%= tab :thursday, :match_path => '/shelves/thursday', :url => spree.edit_admin_shelf_path(:thursday)  %>
+        <%= tab :friday, :match_path => '/shelves/friday', :url => spree.edit_admin_shelf_path(:friday)  %>
+        <%= tab :saturday, :match_path => '/shelves/saturday', :url => spree.edit_admin_shelf_path(:saturday)  %>
+      </ul>
+    </div>
+  </div>
+</nav>

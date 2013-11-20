@@ -4,16 +4,10 @@ Spree::Core::Engine.routes.draw do
   post "/orders/populate_simplecart" => "orders#populate_simplecart"
 
   namespace :admin do
-    resource :shelves, :only => [:edit, :update] do
-      collection do
-        #post :testmail, :on => :collection
-      end
+    resources :shelves, :only => [:edit, :update] do
     end
 
     resource :trading_hours, :only => [:edit, :update] do
-      collection do
-        #post :testmail, :on => :collection
-      end
     end
 
     resources :swaps do
