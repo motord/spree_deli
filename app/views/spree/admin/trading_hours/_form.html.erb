@@ -1,35 +1,30 @@
 <div data-hook="admin_trading_hours_form_fields">
-  <div class="row">
-
-    <div class="alpha four columns" data-hook="timezone">
-      <fieldset class="no-border-bottom">
-        <legend align="center"><%= Spree.t(:timezone) %></legend>
-
-        <div class="field">
-          <%= text_field_tag :timezone, Spree::Config[:timezone], :class => 'fullwidth' %>
-        </div>
-
-      </fieldset>
+  <fieldset class="trading-hours no-border-top">
+    <div class="field">
+      <%= label_tag :timezone, Spree.t(:timezone) %>
+      <%= text_field_tag :timezone, Spree::Config[:timezone], :class => 'fullwidth' %>
     </div>
 
-    <div class="beta four columns" data-hook="open_hour">
-      <fieldset class="no-border-bottom">
-        <legend align="center"><%= Spree.t(:open) %></legend>
 
-        <div class="field">
+    <div class="row">
+      <div class="alpha six columns">
+        <fieldset class="trading no-border-bottom">
+          <legend align="center"><%= Spree.t(:trading_settings)%></legend>
+          <%= label_tag :open, Spree.t(:open) %>
           <%= text_field_tag :open_hour, Spree::Config[:open_hour], :class => 'fullwidth' %>
-        </div>
-
-      </fieldset>
-    </div>
-
-    <div class="four columns omega" data-hook="close_hour">
-      <fieldset class="no-border-bottom">
-        <legend align="center"><%= Spree.t(:close) %></legend>
-        <div class="field">
+          <%= label_tag :close, Spree.t(:close) %>
           <%= text_field_tag :close_hour, Spree::Config[:close_hour], :class => 'fullwidth' %>
-        </div>
-      </fieldset>
+        </fieldset>
+      </div>
+      <div class="omega six columns">
+        <fieldset class="delivery no-border-bottom">
+          <legend align="center"><%= Spree.t(:delivery_settings)%></legend>
+          <%= label_tag :delivery_open, Spree.t(:delivery_open) %>
+          <%= text_field_tag :delivery_open_hour, Spree::Config[:delivery_open_hour], :class => 'fullwidth' %>
+          <%= label_tag :delivery_close, Spree.t(:delivery_close) %>
+          <%= text_field_tag :delivery_close_hour, Spree::Config[:delivery_close_hour], :class => 'fullwidth' %>
+        </fieldset>
+      </div>
     </div>
-  </div>
+  </fieldset>
 </div>

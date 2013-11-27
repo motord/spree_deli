@@ -1,6 +1,6 @@
 class AddWindowToSpreeAddresses < ActiveRecord::Migration
   def self.up
-    add_column :spree_addresses, :window, :integer
+    add_column :spree_addresses, :window, :string
   end
 
   def self.down

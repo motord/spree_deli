@@ -9,7 +9,7 @@ module Spree
     private
 
     def trading_hours?( timestamp )
-      (Spree::Config[:open_hour]...Spree::Config[:close_hour]).include?(timestamp.strftime("%H:%M"))
+      (Spree::Config[:open_hour]..Spree::Config[:close_hour]).include?(timestamp.strftime("%H:%M"))
     end
 
     def today

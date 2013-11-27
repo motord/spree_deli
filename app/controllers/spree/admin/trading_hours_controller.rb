@@ -15,6 +15,14 @@ module Spree
           params.delete(:close_hour)
         end
 
+        if params[:delivery_open_hour].blank?
+          params.delete(:delivery_open_hour)
+        end
+
+        if params[:delivery_close_hour].blank?
+          params.delete(:delivery_close_hour)
+        end
+
         params.each do |name, value|
           next unless Spree::Config.has_preference? name
           Spree::Config[name] = value
