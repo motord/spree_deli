@@ -23,10 +23,10 @@
 
 <div id="almanac">
   <% if @swap %>
-      <div class="flash notice"><%= @notice %></div>
+      <div class="flash swap notice"><%= @notice %></div>
   <% end %>
   <% if not @trading_hours %>
-      <div class="flash notice"><%= "抱歉，目前尚未到开餐时间(#{Spree::Config[:open_hour]} - #{Spree::Config[:close_hour]})。" %></div>
+      <div class="flash trading notice"><%= "抱歉，目前尚未到开餐时间(#{Spree::Config[:open_hour]} - #{Spree::Config[:close_hour]})。" %></div>
   <% end %>
   <%= content_for :"#{@today}" %>
 </div>

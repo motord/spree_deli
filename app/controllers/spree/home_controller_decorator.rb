@@ -20,9 +20,10 @@ module Spree
     end
 
     def swap?(timestamp)
-      swap=Swap.where(original: (Time.now.midnight..(Time.now.midnight +  1.day))).take
+      debugger
+      swap=Swap.where(original: (timestamp.midnight..(timestamp.midnight +  1.day))).take
       if swap.nil?
-        @today = @now.strftime('%A').downcase
+        @today = timestamp.strftime('%A').downcase
         return false
       else
         @today=swap.swap

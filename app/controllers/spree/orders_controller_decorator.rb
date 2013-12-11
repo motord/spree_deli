@@ -1,7 +1,7 @@
 module Spree
   OrdersController.class_eval do
 
-    skip_before_action :verify_authenticity_token, if: :populate_simplecart
+    skip_before_action :verify_authenticity_token, :only=> [:populate_simplecart]
 
     # Adds a new item to the order (creating a new order if none already exists)
     def populate_simplecart
