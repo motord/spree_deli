@@ -51,7 +51,7 @@
 
                     <tr id="stock-item-<%= item.id %>" class="<%= cycle('odd', 'even', :name => 'stock_locations')%>">
                       <td class="align-center"><%= item.stock_location.name %></td>
-                      <td class="align-center"><%= item.count_on_hand %></td>
+                      <td class="align-center"><%= best_in_place item, :count_on_hand, :path => admin_stock_item_path(item) %></td>
                       <td class="align-center">
                         <%= form_tag admin_stock_item_path(item), method: :put, class: 'toggle_stock_item_backorderable' do %>
                             <%= check_box_tag 'stock_item[backorderable]', true,
