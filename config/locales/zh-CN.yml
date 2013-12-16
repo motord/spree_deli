@@ -1,8 +1,10 @@
 zh-CN:
-  hello: "Hello world"
+  hello: Hello world
 
   spree:
-    trading_hours: "Trading hours"
+    trading_hours: Trading hours
+    add_to_cart: 购买
+    out_of_stock: 已售完
     checkout_steps:
       names:
         calling_plan: Calling Plan

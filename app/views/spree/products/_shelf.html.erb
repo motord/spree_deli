@@ -15,7 +15,11 @@
             <%= link_to truncate(product.name, :length => 50), '#', :class => 'info item_name', :itemprop => "name", :title => product.name %>
             <span class="price selling item_price" itemprop="price"><%= display_price(product) %></span>
             <% if @trading_hours %>
-                <a class="item_add" href="javascript:;"> Add to Cart </a>
+                <% if product.master.in_stock? %>
+                    <a class="item_add" href="javascript:;"><%= Spree.t(:add_to_cart) %></a>
+                <% else %>
+                    <label><%= Spree.t(:out_of_stock) %></label>
+                <% end %>
             <% end %>
           </li>
       <% end %>

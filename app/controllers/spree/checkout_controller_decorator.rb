@@ -39,7 +39,10 @@ module Spree
     private
 
     def completion_route
-      @order.create_proposed_shipments
+      shipments = @order.create_proposed_shipments
+      shipments.each do |shipment|
+        shipment.unstock
+      end
       spree.order_path(@order)
     end
 
