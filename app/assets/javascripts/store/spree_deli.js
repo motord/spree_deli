@@ -2,7 +2,7 @@
 simpleCart({
     checkout: {
         type: "SendForm" ,
-        url: "/orders/populate_simplecart"
+        url: "/orders/checkout_simplecart"
     },
     cartColumns: [
         //A custom simplecart column for putting the quantity and increment and decrement items in one div for easier styling.

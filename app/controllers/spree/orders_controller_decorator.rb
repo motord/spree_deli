@@ -1,16 +1,15 @@
 module Spree
   OrdersController.class_eval do
 
-    skip_before_action :verify_authenticity_token, :only=> [:populate_simplecart]
+    skip_before_action :verify_authenticity_token, :only=> [:checkout_simplecart]
 
-    # Adds a new item to the order (creating a new order if none already exists)
-    def populate_simplecart
+    def checkout_simplecart
       populator = Spree::OrderPopulator.new(current_order(true), current_currency)
       (1..32).each do |i|
         copy_params = params.dup
         p = copy_params.slice(:"item_quantity_#{i}", :"item_options_#{i}")
         if p.empty?
-
+          break
         else
           value= p[:"item_options_#{i}"]
           value=~ /pid: product_([0-9]+)/
@@ -25,7 +24,7 @@ module Spree
             fire_event('spree.order.contents_changed')
           else
             flash[:error] = populator.errors.full_messages.join(" ")
-            redirect_to :back
+            redirect_to :back and return
           end
         end
       end
