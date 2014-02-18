@@ -9,8 +9,8 @@ simpleCart({
         { view: function(item, column){
             return	"<span>"+item.get('quantity')+"</span>" +
                 "<div>" +
-                "<a href='javascript:;' class='simpleCart_increment'><img src='<%= image_tag "store/increment.png" %>' title='+1' alt='arrow up'/></a>" +
-                "<a href='javascript:;' class='simpleCart_decrement'><img src='<%= image_tag "store/decrement.png" %>' title='-1' alt='arrow down'/></a>" +
+                "<a href='javascript:;' class='simpleCart_increment'><img src='<%= asset_path "store/increment.png" %>' title='+1' alt='arrow up'/></a>" +
+                "<a href='javascript:;' class='simpleCart_decrement'><img src='<%= asset_path "store/decrement.png" %>' title='-1' alt='arrow down'/></a>" +
                 "</div>";
         }, attr: 'custom' },
         //Name of the item
