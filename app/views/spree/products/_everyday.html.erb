@@ -18,10 +18,14 @@
                 <%= plano_image(product, :itemprop => "image") %>
               </div>
               <%= link_to truncate(product.name, :length => 50), '#', :class => 'info item_name', :itemprop => "name", :title => product.name %>
-              <span class="price selling item_price" itemprop="price"><%= display_price(product) %></span>
               <% if @trading_hours %>
-                  <a class="item_add" href="javascript:;"><%= Spree.t(:add_to_cart) %></a>
-              <% end %>
+                  <a class="item_add" href="javascript:;">
+                    <span class="price selling item_price" itemprop="price"><%= display_price(product) %></span>
+                    <%= Spree.t(:add_to_cart) %>
+                  </a>
+              <% else %>
+                  <span class="price selling item_price" itemprop="price"><%= display_price(product) %></span>
+            <% end %>
             </li>
         <% end %>
         <% reset_cycle("classes") %>
